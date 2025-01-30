@@ -153,3 +153,28 @@ Al realizar esta consulta se cambian los dominios por el seleccionado, mantenien
 ![ap7](https://github.com/user-attachments/assets/9d92b5bc-c24b-4dc7-a21a-3b173113ad3d)
 
 </details>
+
+<details>
+    <br>
+    <summary>Apartado 8</summary>
+
+Contactos de "Ready Mat" antes de la eliminación:
+
+![ap8_1](https://github.com/user-attachments/assets/2205c9fb-aa3f-4204-96eb-5bd0b6d5817d)
+
+Query:
+
+```bash
+DELETE FROM res_partner
+WHERE commercial_company_name = 'Ready Mat' 
+AND is_company = FALSE;
+```
+Al realizar esta consulta se eliminan todos los trabajadores de la empresa "Ready Mat" y especificamos que solo elimine los que no son la empresa como tal.
+
+![ap8_2](https://github.com/user-attachments/assets/a9ea959e-df2b-482b-9ec0-adbbac69d3ea)
+
+Después volvemos a ver los contactos de la empresa "Ready Mat", y como se puede observar se eliminaron los trabajadores asociados a esa empresa, mientras que la empresa sigue estando.
+
+![ap8_3](https://github.com/user-attachments/assets/b5c922bc-37d7-4a27-8784-e32cf6689c9b)
+
+</details>
