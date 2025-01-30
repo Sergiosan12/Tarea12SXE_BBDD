@@ -64,11 +64,31 @@ Se insertaron los datos correctamente:
 Query:
 
 ```bash
- select * from empresasfct order by fechacontacto desc;
+ SELECT * FROM empresasfct ORDER BY fechacontacto DESC;
 ```
 Al realizar este consulta se mostrarán los datos ordenados de la manera especificada:
 
 ![ap3](https://github.com/user-attachments/assets/b90d23b2-f43c-47a0-be74-f2b565f31095)
 
+</details>
+
+<details>
+    <br>
+    <summary>Apartado 4</summary>
+    
+Query:
+
+```bash
+ SELECT c.name AS Nombre, c.city AS Ciudad, 
+       parent.name AS Nombre_Comercial_Empresa
+FROM res_partner c
+LEFT JOIN res_partner parent ON c.parent_id = parent.id
+WHERE c.is_company = FALSE 
+AND c.city = 'Tracy'
+ORDER BY parent.name ASC;
+```
+Al realizar este consulta se mostrarán los datos deseadps de la tabla res_partner (tabla por defecto de Odoo) ordenados por el nombre de la empresa y cuya ciudad sea Tracy:
+
+![ap4](https://github.com/user-attachments/assets/ae739344-3eea-4ecc-bfc1-5f66a8a6d947)
 
 </details>
