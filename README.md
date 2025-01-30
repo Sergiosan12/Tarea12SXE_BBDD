@@ -79,17 +79,16 @@ Al realizar este consulta se mostrarán los datos ordenados de la manera especif
 Query:
 
 ```bash
- SELECT c.name AS Nombre, c.city AS Ciudad, 
-       parent.name AS Nombre_Comercial_Empresa
-FROM res_partner c
-LEFT JOIN res_partner parent ON c.parent_id = parent.id
-WHERE c.is_company = FALSE 
-AND c.city = 'Tracy'
-ORDER BY parent.name ASC;
+ SELECT name AS Nombre, city AS Ciudad, 
+       commercial_company_name AS Nombre_Comercial_Empresa
+FROM res_partner 
+WHERE is_company = FALSE 
+AND city = 'Tracy'
+ORDER BY commercial_company_name ASC;
 ```
 Al realizar este consulta se mostrarán los datos deseados de la tabla res_partner (tabla por defecto de Odoo) ordenados por el nombre de la empresa y cuya ciudad sea Tracy:
 
-![ap4](https://github.com/user-attachments/assets/ae739344-3eea-4ecc-bfc1-5f66a8a6d947)
+![ap4b](https://github.com/user-attachments/assets/bda33f0e-4ca1-41ca-9a13-036462540392)
 
 </details>
 
@@ -101,17 +100,39 @@ Query:
 
 ```bash
 SELECT DISTINCT
-    c.name AS Nombre_Empresa,
-    a.name AS Numero_Factura,
-    a.invoice_date AS Fecha_Factura,
-    a.amount_untaxed AS Total_Factura_Sin_Impuestos
-FROM account_move a
-JOIN res_partner c ON a.partner_id = c.id
-WHERE a.move_type = 'in_refund'
-ORDER BY a.invoice_date DESC;
+    invoice_partner_display_name AS Nombre_Empresa,
+    name AS Numero_Factura,
+    invoice_date AS Fecha_Factura,
+    amount_untaxed AS Total_Factura_Sin_Impuestos
+FROM account_move
+WHERE move_type = 'in_refund'
+ORDER BY invoice_date DESC;
 ```
 Al realizar este consulta se mostrarán las facturas con reembolso activo ("in_refund") de la tabla account_move con los campos especificados ordenadas por la fecha de factura:
 
-![ap5](https://github.com/user-attachments/assets/e9522b55-20e9-4482-900c-54fc2884a20d)
+![ap5b](https://github.com/user-attachments/assets/7673bb3a-2d13-4762-9c69-77d38c1a5d89)
+
+</details>
+
+<details>
+    <br>
+    <summary>Apartado 6</summary>
+    
+Query:
+
+```bash
+SELECT 
+    invoice_partner_display_name AS Nombre_Empresa,
+    COUNT(DISTINCT name) AS Numero_Facturas,
+    SUM(DISTINCT amount_untaxed) AS Total_Facturado_Sin_Impuestos
+FROM account_move 
+WHERE move_type = 'out_invoice'  
+AND state = 'posted'
+GROUP BY invoice_partner_display_name
+HAVING COUNT(DISTINCT name) > 2;
+```
+Al realizar este consulta se mostrarán las empresas clientes que tienen más de 2 facturas de venta emitidas, con el numero de facturas y la suma de lo facturado sin impuestos, agrupado por empresa:
+
+![ap6b](https://github.com/user-attachments/assets/a66f2317-284a-48a9-8b9d-6a13b66e4ee6)
 
 </details>
