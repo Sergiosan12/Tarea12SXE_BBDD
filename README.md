@@ -136,3 +136,20 @@ Al realizar este consulta se mostrarán las empresas clientes que tienen más de
 ![ap6b](https://github.com/user-attachments/assets/a66f2317-284a-48a9-8b9d-6a13b66e4ee6)
 
 </details>
+
+<details>
+    <br>
+    <summary>Apartado 7</summary>
+    
+Query:
+
+```bash
+UPDATE res_partner
+SET email = REPLACE(email, '@bilbao.example.com', '@bilbao.bizkaia.eus')
+WHERE email LIKE '%@bilbao.example.com';
+```
+Al realizar esta consulta se cambian los dominios por el seleccionado, manteniendo el nombre de antes del dominio tal y como estaba.
+
+![ap7](https://github.com/user-attachments/assets/9d92b5bc-c24b-4dc7-a21a-3b173113ad3d)
+
+</details>
