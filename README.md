@@ -56,3 +56,19 @@ Se insertaron los datos correctamente:
 ![ap2](https://github.com/user-attachments/assets/c897e1fb-5e07-4503-9609-7ec18d51db94)
 
 </details>
+
+<details>
+    <br>
+    <summary>Apartado 3</summary>
+    
+Query:
+
+```bash
+ select * from empresasfct order by fechacontacto desc;
+```
+Al realizar este consulta se mostrarán los datos ordenados de la manera especificada:
+
+![ap3](https://github.com/user-attachments/assets/b90d23b2-f43c-47a0-be74-f2b565f31095)
+
+
+</details>
