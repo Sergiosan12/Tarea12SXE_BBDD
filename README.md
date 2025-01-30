@@ -87,8 +87,31 @@ WHERE c.is_company = FALSE
 AND c.city = 'Tracy'
 ORDER BY parent.name ASC;
 ```
-Al realizar este consulta se mostrarán los datos deseadps de la tabla res_partner (tabla por defecto de Odoo) ordenados por el nombre de la empresa y cuya ciudad sea Tracy:
+Al realizar este consulta se mostrarán los datos deseados de la tabla res_partner (tabla por defecto de Odoo) ordenados por el nombre de la empresa y cuya ciudad sea Tracy:
 
 ![ap4](https://github.com/user-attachments/assets/ae739344-3eea-4ecc-bfc1-5f66a8a6d947)
+
+</details>
+
+<details>
+    <br>
+    <summary>Apartado 5</summary>
+    
+Query:
+
+```bash
+SELECT DISTINCT
+    c.name AS Nombre_Empresa,
+    a.name AS Numero_Factura,
+    a.invoice_date AS Fecha_Factura,
+    a.amount_untaxed AS Total_Factura_Sin_Impuestos
+FROM account_move a
+JOIN res_partner c ON a.partner_id = c.id
+WHERE a.move_type = 'in_refund'
+ORDER BY a.invoice_date DESC;
+```
+Al realizar este consulta se mostrarán las facturas con reembolso activo ("in_refund") de la tabla account_move con los campos especificados ordenadas por la fecha de factura:
+
+![ap5](https://github.com/user-attachments/assets/e9522b55-20e9-4482-900c-54fc2884a20d)
 
 </details>
